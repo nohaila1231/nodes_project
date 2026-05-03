@@ -1,16 +1,21 @@
 {
-  "name": "projects",
+  "name": "workflow-test-project",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Test project for Node.js CI/CD workflow template",
+  "main": "src/index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --test tests/*.test.js",
+    "lint": "node -e \"console.log('✓ No linting errors')\"",
+    "build": "node -e \"console.log('✓ Build successful')\"",
+    "start": "node src/index.js"
   },
-  "keywords": [],
+  "keywords": [
+    "ci",
+    "cd",
+    "testing"
+  ],
   "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "dependencies": {
-    "express": "^5.2.1"
-  }
+  "license": "MIT",
+  "devDependencies": {}
 }
