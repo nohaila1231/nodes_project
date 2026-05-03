@@ -1,14 +1,68 @@
-# .github/workflows/ci.yml
-name: Test CI/CD Template
+name: Node.js CI
 
 on:
   push:
-    branches: [main]
+    branches: [ "main", "develop" ]
+  pull_request:
+    branches: [ "main", "develop" ]
 
 jobs:
-  call-template:
-    uses: nohaila1231/CI-NODE-PIPELINE/.github/workflows/node-template.yml@main
+  ci:
+    name: Run CI Pipeline
+    uses: nohaila1231/CI-NODE-PIPELINE/.github/workflows/node-template.yml@v1
+
     with:
-      node-versions: '["18.x","20.x"]'
-      environment: "dev"
-      run-tests: true
+      # ========================
+      # Core configuration
+      # ========================
+      node-versions: '["18.x", "20.x"]'
+      working-directory: '.'
+      package-manager: 'npm'
+
+      # ========================
+      # Build & Test
+      # ========================
+      build-command: 'npm run build'
+      test-command: 'npm test'
+
+      # ========================
+      # Code Quality
+      # ========================
+      enable-linting: 'true'
+      lint-command: 'npm run lint'
+
+      enable-type-checking: 'false'
+
+      # ========================
+      # Coverage
+      # ========================
+      enable-coverage: 'true'
+      coverage-command: 'npm run coverage'
+      coverage-threshold: '80'
+
+      # ========================
+      # Performance & Cache
+      # ========================
+      enable-cache: 'true'
+
+      # ========================
+      # Artifacts
+      # ========================
+      enable-artifacts: 'true'
+      artifact-path: 'dist'
+      artifact-retention-days: '7'
+
+      # ========================
+      # Behavior
+      # ========================
+      continue-on-error: 'false'
+      fail-on-warnings: 'false'
+
+      # ========================
+      # Publishing (disabled)
+      # ========================
+      publish-to-npm: 'false'
+
+    secrets:
+      npm-token: ${{ secrets.NPM_TOKEN }}
+      npm-registry-token: ${{ secrets.NPM_TOKEN }}
