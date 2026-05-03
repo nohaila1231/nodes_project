@@ -1,0 +1,14 @@
+# .github/workflows/ci.yml
+name: Test CI/CD Template
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  call-template:
+    uses: nohaila1231/CI-NODE-PIPELINE/.github/workflows/node-template.yml@main
+    with:
+      node-versions: '["18.x","20.x"]'
+      environment: "dev"
+      run-tests: true
