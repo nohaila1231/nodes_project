@@ -20,7 +20,7 @@ jobs:
   # Test 2: With security scanning
   security-test:
     name: With Security Scanning
-    uses: nohaila1231/CI-NODE-PIPELINE/.github/workflows/node-template.yml@v1.0
+    uses: nohaila1231/CI-NODE-PIPELINE/.github/workflows/node-template.yml@main
     with:
       package-manager: npm
       node-version: '20.x'
@@ -31,7 +31,7 @@ jobs:
   # Test 3: Matrix testing (multiple Node versions)
   matrix-test:
     name: Matrix Testing
-    uses: nohaila1231/CI-NODE-PIPELINE/.github/workflows/node-template.yml@v1.0
+    uses: nohaila1231/CI-NODE-PIPELINE/.github/workflows/node-template.yml@main
     with:
       package-manager: npm
       node-version: '18.x,20.x,22.x'
