@@ -9,7 +9,7 @@ on:
 jobs:
   ci:
     name: Run CI Pipeline
-    uses: nohaila1231/CI-NODE-PIPELINE/.github/workflows/node-template.yml@v1
+    uses: nohaila1231/CI-NODE-PIPELINE/.github/workflows/node-template.yml@main
 
     with:
       # ========================
