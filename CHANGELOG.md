@@ -1,0 +1,42 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+## [0.1.0] - 2026-05-04
+
+### 🎉 Features
+
+- **feature**: nouvelle fonction ([e584105](https://github.com/nohaila1231/nodes_project/commit/e584105))
+- **feature**: nouvelle fonction ([d272ecc](https://github.com/nohaila1231/nodes_project/commit/d272ecc))
+- **feature**: nouvelle fonction ([bfa50be](https://github.com/nohaila1231/nodes_project/commit/bfa50be))
+- **feature**: nouvelle fonction ([a05376d](https://github.com/nohaila1231/nodes_project/commit/a05376d))
+- **feature**: nouvelle fonction ([edf929c](https://github.com/nohaila1231/nodes_project/commit/edf929c))
+- **feature**: nouvelle fonction ([036472b](https://github.com/nohaila1231/nodes_project/commit/036472b))
+- **feature**: nouvelle fonction ([a2f52a3](https://github.com/nohaila1231/nodes_project/commit/a2f52a3))
+
+### 🐛 Bug Fixes
+
+- **fix**: add permission ([18bf3a4](https://github.com/nohaila1231/nodes_project/commit/18bf3a4))
+- **fix**: rename secret to git-token ([34d84fc](https://github.com/nohaila1231/nodes_project/commit/34d84fc))
+- **fix**: rename secret to git-token ([9a8770c](https://github.com/nohaila1231/nodes_project/commit/9a8770c))
+- **fix**: rename secret to GITHUB_TOKEN ([e89d13d](https://github.com/nohaila1231/nodes_project/commit/e89d13d))
+
+### Other Changes
+
+- update ci.yml ([9708cf2](https://github.com/nohaila1231/nodes_project/commit/9708cf2))
+- update ci.yml ([626ee82](https://github.com/nohaila1231/nodes_project/commit/626ee82))
+- update ci.yml ([2d5865b](https://github.com/nohaila1231/nodes_project/commit/2d5865b))
+- update ci.yml ([77c4922](https://github.com/nohaila1231/nodes_project/commit/77c4922))
+- update ci.yml ([947cf8f](https://github.com/nohaila1231/nodes_project/commit/947cf8f))
+- update ci ([e7705cd](https://github.com/nohaila1231/nodes_project/commit/e7705cd))
+- ajouter file ci.yml et modifier le ([525ea30](https://github.com/nohaila1231/nodes_project/commit/525ea30))
+- modifier le fichier ([5443bbe](https://github.com/nohaila1231/nodes_project/commit/5443bbe))
+- modifier le fichier ([c4e744a](https://github.com/nohaila1231/nodes_project/commit/c4e744a))
+- modifier le fichier ([505f7a7](https://github.com/nohaila1231/nodes_project/commit/505f7a7))
+- modifier le fichier ([dd5bc07](https://github.com/nohaila1231/nodes_project/commit/dd5bc07))
+- modifier le fichier ([7cc16ea](https://github.com/nohaila1231/nodes_project/commit/7cc16ea))
+- update ci.yml ([c5c4af0](https://github.com/nohaila1231/nodes_project/commit/c5c4af0))
+- update ci.yml ([a7054c9](https://github.com/nohaila1231/nodes_project/commit/a7054c9))
+- update ci.yml ([0f0f70b](https://github.com/nohaila1231/nodes_project/commit/0f0f70b))
+- remove node_modules and fix line endings ([5b49379](https://github.com/nohaila1231/nodes_project/commit/5b49379))
+
