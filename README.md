@@ -51,7 +51,7 @@ git push origin main
 ```
 test-project/
 ├── .github/workflows/
-│   └── test.yml              # Workflows qui appellent le template
+│   └── ci.yml              # Workflows qui appellent le template
 ├── src/
 │   └── index.js             # Code à tester
 ├── tests/
