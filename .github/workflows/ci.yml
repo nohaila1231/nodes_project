@@ -19,8 +19,6 @@ jobs:
       test-command: "npm test"
       build-command: "npm run build"
       enable-linting: "true"
-      enable-release: "true"
-      release-branch: "main"
       
       # 🆕 À AJOUTER pour activer plus de fonctionnalités :
       
@@ -46,7 +44,7 @@ jobs:
       enable-release: "true"
       release-branch: "main"
       git-user-name: "GitHub Actions"
-      git-user-email: "actions@github.com"
+      git-user-email: "nohaila1231@users.noreply.github.com"
       
       # 6. Déploiement multi-environnement
       enable-deployment: "true"
