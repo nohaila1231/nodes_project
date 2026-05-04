@@ -4,6 +4,10 @@ on:
   push:
     branches: [main]
 
+permissions:
+  contents: write
+  packages: write
+
 jobs:
   create-tag:
     uses: nohaila1231/CI-NODE-PIPELINE/.github/workflows/node-template.yml@main
