@@ -95,7 +95,7 @@ git init
 git add .
 git commit -m "Initial test setup"
 
-# 2. Créer repo GitHub, puis:
+# 2. Créer repo GitHub, puis :
 git remote add origin https://github.com/YOUR_ORG/test-repo.git
 git branch -M main
 git push -u origin main
