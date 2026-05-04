@@ -100,5 +100,5 @@ git remote add origin https://github.com/YOUR_ORG/test-repo.git
 git branch -M main
 git push -u origin main
 
-# 3. Voir Actions exécuter ...
+# 3. Voir Actions exécuter ....
 ```
