@@ -9,6 +9,8 @@ permissions:
   packages: write
   security-events: write
   actions: read 
+  checks: read 
+  statuses: read 
 
 jobs:
   create-tag:
