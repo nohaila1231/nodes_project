@@ -1,19 +1,308 @@
-name: Test Tags Only
+name: Test Full Pipeline - All Features
 
 on:
   push:
+    branches: [main, develop]
+  pull_request:
     branches: [main]
+  workflow_dispatch:  # Permet un déclenchement manuel depuis l'UI GitHub
+    inputs:
+      environment:
+        description: 'Environment to deploy'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - dev
+          - staging
+          - prod
 
 permissions:
   contents: write
   packages: write
+  security-events: write  # Pour CodeQL
+  actions: read
+  checks: write
+
+# Concurrency control pour annuler les runs précédents
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  create-tag:
-    uses: nohaila1231/CI-NODE-PIPELINE/.github/workflows/node-template.yml@v1.0.0
+  # JOB 1: Test avec npm (configuration standard)
+  test-npm-full:
+    name: 🔵 Test NPM - Full Features
+    uses: nohaila1231/CI-NODE-PIPELINE/.github/workflows/node-template.yml@1.0.0
+    with:
+      # Core configuration
+      node-versions: '["18.x", "20.x", "22.x"]'
+      working-directory: '.'
+      package-manager: 'npm'
+      
+      # Build configuration
+      build-command: 'npm run build'
+      
+      # Testing configuration
+      test-command: 'npm test'
+      enable-coverage: 'true'
+      coverage-command: 'npm run coverage'
+      coverage-threshold: '70'
+      
+      # Linting & quality
+      enable-linting: 'true'
+      lint-command: 'npm run lint'
+      enable-type-checking: 'true'
+      type-check-command: 'npm run type-check'
+      
+      # Caching
+      enable-cache: 'true'
+      cache-key-prefix: 'npm-deps'
+      
+      # Artifacts
+      enable-artifacts: 'true'
+      artifact-path: 'dist'
+      artifact-retention-days: '7'
+      
+      # Pre/Post scripts
+      pre-install-script: 'echo "🧹 Cleaning cache..." && npm cache verify'
+      post-install-script: 'echo "✅ Dependencies installed successfully"'
+      pre-build-script: 'echo "🏗️ Starting build process..."'
+      post-build-script: 'echo "✨ Build completed!"'
+      
+      # Behavior controls
+      fail-on-warnings: 'true'
+      continue-on-error: 'false'
+      
+      # Release Management
+      enable-release: 'true'
+      release-branch: 'main'
+      git-user-name: 'CI Bot'
+      git-user-email: 'ci@example.com'
+      
+      # Security Scanning
+      enable-security-scan: 'true'
+      security-fail-on-error: 'false'
+      
+      # Deployment
+      enable-deployment: 'true'
+      deployment-command: 'echo "Deploying to ${{ inputs.environment || 'dev' }}..."'
+      
+      # Notifications
+      enable-notifications: 'true'
+      notify-on-success: 'true'
+      notify-on-failure: 'true'
+      
+    secrets:
+      npm-token: ${{ secrets.NPM_TOKEN || secrets.GITHUB_TOKEN }}
+      npm-registry-token: ${{ secrets.NPM_PUBLISH_TOKEN || secrets.GITHUB_TOKEN }}
+      git-token: ${{ secrets.GITHUB_TOKEN }}
+
+  # JOB 2: Test avec Yarn
+  test-yarn-matrix:
+    name: 🟡 Test Yarn - Multi-version
+    uses: nohaila1231/CI-NODE-PIPELINE/.github/workflows/node-template.yml@main
     with:
       node-versions: '["20.x"]'
-      enable-release: true        
-      test-command: echo "ok"      
+      package-manager: 'yarn'
+      test-command: 'yarn test'
+      build-command: 'yarn build'
+      lint-command: 'yarn lint'
+      enable-coverage: 'true'
+      enable-linting: 'true'
+      enable-cache: 'true'
+      enable-artifacts: 'true'
+      artifact-path: 'build'
+      continue-on-error: 'false'
+      
+    secrets:
+      npm-token: ${{ secrets.GITHUB_TOKEN }}
+      git-token: ${{ secrets.GITHUB_TOKEN }}
+
+  # JOB 3: Test avec PNPM
+  test-pnpm:
+    name: 🟢 Test PNPM - Fast & Modern
+    uses: nohaila1231/CI-NODE-PIPELINE/.github/workflows/node-template.yml@main
+    with:
+      node-versions: '["20.x"]'
+      package-manager: 'pnpm'
+      test-command: 'pnpm test'
+      build-command: 'pnpm build'
+      enable-cache: 'true'
+      cache-key-prefix: 'pnpm-store'
+      enable-release: 'false'  # Désactivé pour ce test
+      
     secrets:
       git-token: ${{ secrets.GITHUB_TOKEN }}
+
+  # JOB 4: Test avec Bun (si supporté)
+  test-bun:
+    name: 🟣 Test Bun - Experimental
+    uses: nohaila1231/CI-NODE-PIPELINE/.github/workflows/node-template.yml@main
+    with:
+      node-versions: '["20.x"]'
+      package-manager: 'bun'
+      test-command: 'bun test'
+      build-command: 'bun run build'
+      enable-cache: 'true'
+      continue-on-error: 'true'  # Ne pas bloquer si Bun échoue
+      
+    secrets:
+      git-token: ${{ secrets.GITHUB_TOKEN }}
+
+  # JOB 5: Test minimal (juste build & test)
+  test-minimal:
+    name: ⚪ Test Minimal - Quick Check
+    uses: nohaila1231/CI-NODE-PIPELINE/.github/workflows/node-template.yml@main
+    with:
+      node-versions: '["20.x"]'
+      test-command: 'npm test'
+      enable-linting: 'false'
+      enable-type-checking: 'false'
+      enable-coverage: 'false'
+      enable-cache: 'true'
+      enable-release: 'false'
+      enable-security-scan: 'false'
+      
+    secrets:
+      git-token: ${{ secrets.GITHUB_TOKEN }}
+
+  # JOB 6: Test avec publication NPM (simulée)
+  test-publish-npm:
+    name: 📦 Test NPM Publishing
+    uses: nohaila1231/CI-NODE-PIPELINE/.github/workflows/node-template.yml@main
+    with:
+      node-versions: '["20.x"]'
+      publish-to-npm: 'true'
+      npm-registry: 'https://registry.npmjs.org/'
+      test-command: 'npm test'
+      build-command: 'npm run build'
+      
+    secrets:
+      npm-registry-token: ${{ secrets.NPM_PUBLISH_TOKEN || 'dummy-token-for-test' }}
+      git-token: ${{ secrets.GITHUB_TOKEN }}
+
+  # JOB 7: Test avec scripts personnalisés
+  test-custom-scripts:
+    name: 🔧 Test Custom Scripts
+    uses: nohaila1231/CI-NODE-PIPELINE/.github/workflows/node-template.yml@main
+    with:
+      node-versions: '["20.x"]'
+      install-command: 'npm ci --production=false'
+      build-command: 'npm run build:prod'
+      test-command: 'npm run test:ci'
+      coverage-command: 'npm run test:coverage'
+      pre-install-script: 'echo "Pre-install hook"'
+      post-install-script: 'npm run postinstall'
+      pre-build-script: 'npm run prebuild'
+      post-build-script: 'npm run postbuild'
+      
+    secrets:
+      git-token: ${{ secrets.GITHUB_TOKEN }}
+
+  # JOB 8: Test déploiement multi-environnement
+  test-deployment:
+    name: 🚀 Test Deployment - ${{ matrix.environment }}
+    if: github.event_name == 'workflow_dispatch'
+    uses: nohaila1231/CI-NODE-PIPELINE/.github/workflows/node-template.yml@main
+    with:
+      node-versions: '["20.x"]'
+      enable-deployment: 'true'
+      target-environment: ${{ github.event.inputs.environment }}
+      deployment-command: |
+        echo "Deploying to ${{ github.event.inputs.environment }}"
+        echo "Environment variables:"
+        echo "NODE_ENV=${{ github.event.inputs.environment }}"
+      test-command: 'npm test'
+      
+    secrets:
+      git-token: ${{ secrets.GITHUB_TOKEN }}
+
+  # JOB 9: Test avancé avec toutes les fonctionnalités sauf release
+  test-advanced-no-release:
+    name: 🎯 Test Advanced - All Features Except Release
+    uses: nohaila1231/CI-NODE-PIPELINE/.github/workflows/node-template.yml@main
+    with:
+      node-versions: '["18.x", "20.x", "22.x"]'
+      package-manager: 'npm'
+      enable-linting: 'true'
+      enable-type-checking: 'true'
+      enable-coverage: 'true'
+      coverage-threshold: '80'
+      enable-cache: 'true'
+      enable-artifacts: 'true'
+      artifact-path: 'coverage,dist'
+      enable-security-scan: 'true'
+      security-fail-on-error: 'false'
+      enable-notifications: 'true'
+      notify-on-success: 'true'
+      notify-on-failure: 'true'
+      fail-on-warnings: 'true'
+      continue-on-error: 'false'
+      enable-release: 'false'  # Désactivé pour ce test
+      
+    secrets:
+      npm-token: ${{ secrets.GITHUB_TOKEN }}
+      git-token: ${{ secrets.GITHUB_TOKEN }}
+
+  # JOB 10: Test avec artefacts et rétention longue
+  test-artifacts-long:
+    name: 💾 Test Long-term Artifacts
+    uses: nohaila1231/CI-NODE-PIPELINE/.github/workflows/node-template.yml@main
+    with:
+      node-versions: '["20.x"]'
+      enable-artifacts: 'true'
+      artifact-path: 'dist'
+      artifact-retention-days: '30'  # Rétention longue
+      test-command: 'npm test'
+      build-command: 'npm run build'
+      
+    secrets:
+      git-token: ${{ secrets.GITHUB_TOKEN }}
+
+# Rapport final après tous les jobs
+report:
+  name: 📊 Test Report
+  runs-on: ubuntu-latest
+  needs: [test-npm-full, test-yarn-matrix, test-pnpm, test-bun, test-minimal, test-publish-npm, test-custom-scripts, test-advanced-no-release, test-artifacts-long]
+  if: always()
+  steps:
+    - name: Generate Test Summary
+      run: |
+        echo "# 🧪 Pipeline Test Results" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "| Job | Status | Features Tested |" >> $GITHUB_STEP_SUMMARY
+        echo "|-----|--------|----------------|" >> $GITHUB_STEP_SUMMARY
+        echo "| NPM Full | ${{ needs.test-npm-full.result }} | All features (build, test, lint, coverage, security, release, deployment, notifications) |" >> $GITHUB_STEP_SUMMARY
+        echo "| Yarn Matrix | ${{ needs.test-yarn-matrix.result }} | Yarn package manager, multi-version |" >> $GITHUB_STEP_SUMMARY
+        echo "| PNPM | ${{ needs.test-pnpm.result }} | PNPM package manager, fast installs |" >> $GITHUB_STEP_SUMMARY
+        echo "| Bun | ${{ needs.test-bun.result }} | Bun runtime (experimental) |" >> $GITHUB_STEP_SUMMARY
+        echo "| Minimal | ${{ needs.test-minimal.result }} | Basic build & test only |" >> $GITHUB_STEP_SUMMARY
+        echo "| NPM Publish | ${{ needs.test-publish-npm.result }} | NPM registry publishing |" >> $GITHUB_STEP_SUMMARY
+        echo "| Custom Scripts | ${{ needs.test-custom-scripts.result }} | Pre/post hooks, custom commands |" >> $GITHUB_STEP_SUMMARY
+        echo "| Advanced No Release | ${{ needs.test-advanced-no-release.result }} | Security scanning, notifications, artifacts |" >> $GITHUB_STEP_SUMMARY
+        echo "| Long Artifacts | ${{ needs.test-artifacts-long.result }} | Extended artifact retention |" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        
+        # Calculate success rate
+        SUCCESS_COUNT=0
+        TOTAL_COUNT=0
+        for JOB in test-npm-full test-yarn-matrix test-pnpm test-bun test-minimal test-publish-npm test-custom-scripts test-advanced-no-release test-artifacts-long; do
+          STATUS=$(jq -r ".\"$JOB\".result" <<< '${{ toJson(needs) }}')
+          if [ "$STATUS" = "success" ]; then
+            SUCCESS_COUNT=$((SUCCESS_COUNT + 1))
+          fi
+          TOTAL_COUNT=$((TOTAL_COUNT + 1))
+        done
+        
+        echo "## 📈 Overall Statistics" >> $GITHUB_STEP_SUMMARY
+        echo "- **Success Rate:** $((SUCCESS_COUNT * 100 / TOTAL_COUNT))% ($SUCCESS_COUNT/$TOTAL_COUNT jobs passed)" >> $GITHUB_STEP_SUMMARY
+        echo "- **Total Features Tested:** 20+" >> $GITHUB_STEP_SUMMARY
+        echo "- **Package Managers:** npm, yarn, pnpm, bun" >> $GITHUB_STEP_SUMMARY
+        echo "- **Node Versions:** 18.x, 20.x, 22.x" >> $GITHUB_STEP_SUMMARY
+        
+        # Exit with error if any critical job failed
+        if [ "${{ needs.test-npm-full.result }}" = "failure" ] || [ "${{ needs.test-advanced-no-release.result }}" = "failure" ]; then
+          echo "❌ Critical jobs failed!" >> $GITHUB_STEP_SUMMARY
+          exit 1
+        fi
