@@ -1,0 +1,22 @@
+name: CI Pipeline for nodes_project
+
+# 👇 C'est ce qui manquait : les déclencheurs (évite l'erreur "No event triggers")
+on:
+  push:
+    branches: [ main]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  # Appel du template situé dans l'autre dépôt
+  call-template:
+    uses: nohaila1231/CI-NODE-PIPELINE/.github/workflows/node-template.yml@main
+    with:
+      node-versions: '["20.x"]'          # Version de Node.js
+      test-command: "npm test"           # Commande de test
+      build-command: "npm run build"     # Commande de build
+      enable-linting: "true"             # Active le linting (optionnel)
+      enable-security-scan: "false"      # Désactive le scan de sécurité pour commencer
+    secrets:
+      # Vous pouvez passer des secrets si nécessaire, par exemple pour npm publish
+      npm-token: ${{ secrets.NPM_TOKEN }}
