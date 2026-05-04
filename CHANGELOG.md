@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.1] - 2026-05-04
+
+### 🐛 Bug Fixes
+
+- **fix**: modifier une branche par un tag ([b3eaf9c](https://github.com/nohaila1231/nodes_project/commit/b3eaf9c))
+- **fix**: modifier une branche par un tag ([8c1a4bb](https://github.com/nohaila1231/nodes_project/commit/8c1a4bb))
+
+### 📦 Chores
+
+- **chore**: release 1.0.0 ([61c022a](https://github.com/nohaila1231/nodes_project/commit/61c022a))
+
+### Other Changes
+
+- Merge branch 'main' of https://github.com/nohaila1231/nodes_project ([d36df7b](https://github.com/nohaila1231/nodes_project/commit/d36df7b))
+
+All notable changes to this project will be documented in this file.
+
 ## [1.0.0] - 2026-05-04
 
 ### 📦 Chores
