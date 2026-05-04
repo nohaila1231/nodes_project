@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.1] - 2026-05-04
+
+### 🐛 Bug Fixes
+
+- **fix**: add enable-security-scan ([0ff0b74](https://github.com/nohaila1231/nodes_project/commit/0ff0b74))
+
+### 📦 Chores
+
+- **chore**: release 1.1.0 ([ed16cc3](https://github.com/nohaila1231/nodes_project/commit/ed16cc3))
+
+### Other Changes
+
+- Merge branch 'main' of https://github.com/nohaila1231/nodes_project ([52023a7](https://github.com/nohaila1231/nodes_project/commit/52023a7))
+
+All notable changes to this project will be documented in this file.
+
 ## [1.1.0] - 2026-05-04
 
 ### 🎉 Features
