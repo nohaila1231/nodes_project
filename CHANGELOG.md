@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.0] - 2026-05-04
+
+### 🎉 Features
+
+- **feature**: add permission ([4eb8e26](https://github.com/nohaila1231/nodes_project/commit/4eb8e26))
+- **feature**: add permission ([78c540e](https://github.com/nohaila1231/nodes_project/commit/78c540e))
+
+### 📦 Chores
+
+- **chore**: release 0.1.0 ([172deb3](https://github.com/nohaila1231/nodes_project/commit/172deb3))
+
+### Other Changes
+
+- Merge branch 'main' of https://github.com/nohaila1231/nodes_project ([07984d0](https://github.com/nohaila1231/nodes_project/commit/07984d0))
+
+All notable changes to this project will be documented in this file.
+
 ## [0.1.0] - 2026-05-04
 
 ### 🎉 Features
