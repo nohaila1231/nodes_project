@@ -35,7 +35,6 @@ jobs:
     name: 🔵 Test NPM - Full Features
     uses: nohaila1231/CI-NODE-PIPELINE/.github/workflows/node-template.yml@1.0.0
     with:
-      # Core configuration
       node-versions: '["18.x", "20.x", "22.x"]'
       working-directory: '.'
       package-manager: 'npm'
