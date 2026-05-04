@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0] - 2026-05-04
+
+### 📦 Chores
+
+- **chore**: release 0.2.0 ([56fe609](https://github.com/nohaila1231/nodes_project/commit/56fe609))
+
+### Other Changes
+
+- BREAKING CHANGE: API refactor ([63053d9](https://github.com/nohaila1231/nodes_project/commit/63053d9))
+- Merge branch 'main' of https://github.com/nohaila1231/nodes_project ([f9fa7f5](https://github.com/nohaila1231/nodes_project/commit/f9fa7f5))
+- BREAKING CHANGE: API refactor ([12cfbaa](https://github.com/nohaila1231/nodes_project/commit/12cfbaa))
+
+All notable changes to this project will be documented in this file.
+
 ## [0.2.0] - 2026-05-04
 
 ### 🎉 Features
