@@ -51,12 +51,12 @@ git push origin main
 ```
 test-project/
 ├── .github/workflows/
-│   └── ci.yml              # Workflows qui appellent le template
+│   └── ci.yml              
 ├── src/
-│   └── index.js             # Code à tester
+│   └── index.js            
 ├── tests/
-│   └── math.test.js         # Tests unitaires
-└── package.json             # Dépendances + scripts
+│   └── math.test.js        
+└── package.json             
 ```
 
 ## Scripts
