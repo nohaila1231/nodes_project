@@ -12,4 +12,4 @@ jobs:
       enable-release: true        
       test-command: echo "ok"      
     secrets:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      git-token: ${{ secrets.GITHUB_TOKEN }}
