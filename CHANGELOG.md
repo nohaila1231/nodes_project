@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.3] - 2026-05-04
+
+### 🐛 Bug Fixes
+
+- **fix**: add enable-security-events + actions ([0626b9d](https://github.com/nohaila1231/nodes_project/commit/0626b9d))
+
+### 📦 Chores
+
+- **chore**: release 1.1.2 ([2cb9be6](https://github.com/nohaila1231/nodes_project/commit/2cb9be6))
+
+### Other Changes
+
+- Merge branch 'main' of https://github.com/nohaila1231/nodes_project ([6861b67](https://github.com/nohaila1231/nodes_project/commit/6861b67))
+
+All notable changes to this project will be documented in this file.
+
 ## [1.1.2] - 2026-05-04
 
 ### 🐛 Bug Fixes
