@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.0] - 2026-05-04
+
+### 🎉 Features
+
+- **feature**: update ci.yml ([63f872d](https://github.com/nohaila1231/nodes_project/commit/63f872d))
+- **feature**: update ci.yml ([aab8d37](https://github.com/nohaila1231/nodes_project/commit/aab8d37))
+- **feature**: update ci.yml ([e3144f6](https://github.com/nohaila1231/nodes_project/commit/e3144f6))
+
+### 📦 Chores
+
+- **chore**: release 1.0.1 ([4da671e](https://github.com/nohaila1231/nodes_project/commit/4da671e))
+
+### Other Changes
+
+- Merge branch 'main' of https://github.com/nohaila1231/nodes_project ([2d2609d](https://github.com/nohaila1231/nodes_project/commit/2d2609d))
+
+All notable changes to this project will be documented in this file.
+
 ## [1.0.1] - 2026-05-04
 
 ### 🐛 Bug Fixes
