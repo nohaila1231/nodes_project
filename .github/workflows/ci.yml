@@ -9,7 +9,7 @@ jobs:
     uses: nohaila1231/CI-NODE-PIPELINE/.github/workflows/node-template.yml@main
     with:
       node-versions: '["20.x"]'
-      enable-release: true        # 👈 Seulement ça pour les tags !
-      test-command: echo "ok"      # Commande simple
+      enable-release: true        
+      test-command: echo "ok"      
     secrets:
       git-token: ${{ secrets.GITHUB_TOKEN }}
