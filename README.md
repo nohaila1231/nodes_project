@@ -12,7 +12,7 @@ cd test-project
 # Tester que le build fonctionne
 npm run build
 
-# Tester que les tests passent
+# Tester que les tests passent ..
 npm test
 
 # Tester que le lint passe
