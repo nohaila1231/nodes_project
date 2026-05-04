@@ -3,7 +3,7 @@ name: CI Pipeline for nodes_project
 permissions:
   contents: read
   security-events: write
-  
+
 on:
   push:
     branches: [main]
@@ -19,6 +19,8 @@ jobs:
       test-command: "npm test"
       build-command: "npm run build"
       enable-linting: "true"
+      enable-release: "true"
+      release-branch: "main"
       
       # 🆕 À AJOUTER pour activer plus de fonctionnalités :
       
