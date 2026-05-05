@@ -18,7 +18,8 @@ jobs:
     with:
       node-versions: '["20.x"]'
       enable-release: true  
-      enable-security-scan: false      
+      enable-security-scan: true 
+      enable-artifacts: 'true'     
       test-command: echo "ok"      
     secrets:
       git-token: ${{ secrets.GITHUB_TOKEN }}
