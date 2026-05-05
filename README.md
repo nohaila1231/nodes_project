@@ -4,7 +4,7 @@ Projet minimal pour tester le workflow template Node.js.
 
 ## Comment tester
 
-### Option 1: Test local (avant de . pusher)
+### Option 1: Test local (avant de pusher)
 
 ```bash
 cd test-project
