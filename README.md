@@ -15,7 +15,7 @@ npm run build
 # Tester que les tests passent ..
 npm test
 
-# Tester que le lint passe
+# Tester que le lint passe ...
 npm run lint
 ```
 
